@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>POPKID XMD – Bot Hosting &amp; More</title>
+<meta name="description" content="Bot hosting, social media boosting, panel servers, websites and apps by POPKID XMD.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#14030a;--royal:#7d0f26;--blue:#e11d34;--cer:#ff7b88;
+  --white:#fff;--text:#fff6f7;--muted:#e2c3c8;
+  --gold:#D4AF37;--gold2:#F5C542;
+  --glass:rgba(255,255,255,.08);--glass2:rgba(255,255,255,.14);
+  --line:rgba(255,255,255,.18);--hi:rgba(255,255,255,.55);
+  --goldg:linear-gradient(135deg,#F5C542,#D4AF37 55%,#b8902a);
+  --r:24px;color-scheme:dark;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
+html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);line-height:1.6;
+  background:radial-gradient(900px 600px at 85% -5%,rgba(225,29,52,.5),transparent 60%),radial-gradient(700px 500px at -10% 30%,rgba(212,175,55,.16),transparent 60%),radial-gradient(800px 700px at 100% 75%,rgba(255,90,100,.22),transparent 60%),linear-gradient(180deg,#2a0610,var(--navy) 60%,#0c0206);
+  background-color:var(--navy);background-attachment:fixed;overflow-x:hidden}
+body.lock{overflow:hidden}
+h1,h2,h3{font-family:Sora,Inter,sans-serif;margin:0;line-height:1.15}
+a{color:inherit;text-decoration:none}
+.glass{background:linear-gradient(155deg,rgba(255,255,255,.3),rgba(255,255,255,.06) 34%,rgba(255,255,255,0) 60%,rgba(255,255,255,.08)),var(--glass);border:1px solid var(--line);border-radius:var(--r);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
+  box-shadow:inset 0 1px 0 var(--hi),0 10px 30px rgba(0,0,0,.28)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+section{padding:72px 0 8px}
+.eyebrow{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.14em;color:var(--gold2);margin-bottom:10px}
+.sec-h{font-size:clamp(1.7rem,5vw,2.5rem);font-weight:800}
+.sec-p{color:var(--muted);max-width:56ch;margin:12px 0 32px}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+
+/* header */
+header{position:fixed;top:0;left:0;right:0;z-index:50;padding:calc(env(safe-area-inset-top,0px) + 10px) 14px 0}
+.bar{display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 14px;border-radius:20px;max-width:1080px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;font-family:Sora;font-weight:800;letter-spacing:.02em}
+.logo{width:34px;height:34px;border-radius:11px;background:var(--goldg) center/cover;display:grid;place-items:center;color:#5a0a14;font-size:.8rem;font-weight:800;flex:none}
+.burger{width:42px;height:42px;border-radius:14px;border:1px solid var(--line);background:var(--glass);cursor:pointer;position:relative;color:#fff}
+.burger i{position:absolute;left:11px;right:11px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+.burger i:nth-child(1){top:14px}.burger i:nth-child(2){top:20px}.burger i:nth-child(3){top:26px}
+.burger.open i:nth-child(1){top:20px;transform:rotate(45deg)}
+.burger.open i:nth-child(2){opacity:0}
+.burger.open i:nth-child(3){top:20px;transform:rotate(-45deg)}
+.drawer{max-width:1080px;margin:8px auto 0;padding:10px;display:grid;gap:4px;transform-origin:top;transform:scaleY(.9) translateY(-8px);opacity:0;pointer-events:none;visibility:hidden;transition:.28s cubic-bezier(.3,1.3,.5,1);background-color:rgba(48,7,18,.82)}
+.drawer.open{transform:none;opacity:1;pointer-events:auto;visibility:visible}
+.drawer a,.drawer button.nav{padding:14px 16px;border-radius:16px;font-weight:500;text-align:left;background:none;border:0;color:inherit;font:inherit;cursor:pointer}
+.drawer a:hover{background:var(--glass2)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;border-radius:999px;font:600 1rem Inter,sans-serif;cursor:pointer;border:1px solid var(--line);color:#fff;background:var(--glass2);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:inset 0 1px 0 var(--hi);transition:transform .2s,box-shadow .2s}
+.btn:not(.gold){background-image:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,0) 55%)}
+.btn.gold::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0) 50%);pointer-events:none}
+.btn{position:relative;overflow:hidden}
+.btn:hover{transform:translateY(-2px)}
+.btn.gold{background:var(--goldg);color:#2a1d00;border-color:rgba(255,236,170,.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 8px 24px rgba(212,175,55,.4)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+
+/* hero */
+.hero{min-height:100svh;display:flex;align-items:center;text-align:center;padding:110px 0 60px}
+.badge{width:168px;height:168px;border-radius:50%;margin:0 auto 28px;display:grid;place-items:center;background:var(--glass) center/cover;position:relative;font:800 2.4rem Sora;color:var(--gold2);animation:float 6s ease-in-out infinite}
+.badge::before{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px solid rgba(255,255,255,.55)}
+@keyframes float{50%{transform:translateY(-10px)}}
+.hero h1{font-size:clamp(2.6rem,11vw,5rem);font-weight:800;letter-spacing:.01em;background:linear-gradient(180deg,#fff 20%,var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h2{font-size:clamp(1.2rem,4vw,1.7rem);color:var(--cer);font-weight:600;margin-top:10px}
+.hero p{max-width:46ch;margin:18px auto 30px;color:var(--text)}
+.acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+/* services */
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+.card{overflow:hidden;display:flex;flex-direction:column;transition:transform .25s}
+.card:hover{transform:translateY(-4px)}
+.thumb{height:210px;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.25),transparent 45%),linear-gradient(135deg,var(--royal),#c8102e) center/cover;display:grid;place-items:center;font-size:2.8rem;border-bottom:1px solid var(--line)}
+.card .in{padding:18px 20px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{font-size:1.15rem}
+.card p{margin:0;color:var(--muted);font-size:.93rem;flex:1}
+.card .go{display:inline-flex;align-items:center;gap:6px;margin-top:8px;color:var(--gold2);font-weight:600;background:none;border:0;padding:0;text-align:left;cursor:pointer;font-size:.95rem;font-family:inherit}
+
+/* testimonials */
+.car{position:relative}
+.track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 14px;scrollbar-width:none}
+.track::-webkit-scrollbar{display:none}
+.rev{flex:0 0 min(86%,380px);scroll-snap-align:center;padding:22px}
+.who{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.av{width:44px;height:44px;border-radius:50%;background:var(--goldg);color:#5a0a14;display:grid;place-items:center;font-weight:800}
+.who b{display:block}.who small{color:var(--muted)}
+.stars{color:var(--gold2);letter-spacing:3px;margin-bottom:8px}
+.rev p{margin:0;color:var(--text)}
+.arr{position:absolute;top:50%;transform:translateY(-60%);width:44px;height:44px;border-radius:50%;z-index:2;cursor:pointer;color:#fff;font-size:1.3rem;border:1px solid var(--line);background-color:rgba(48,7,18,.75);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.arr.l{left:-6px}.arr.r{right:-6px}
+
+/* about */
+.about{display:grid;gap:24px;padding:32px 24px;text-align:center;justify-items:center}
+.pw{position:relative;width:150px;height:150px}
+.pf{width:150px;height:150px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--royal)) center/cover;border:3px solid var(--gold);display:grid;place-items:center;font:800 2.6rem Sora}
+.pb{position:absolute;right:-8px;bottom:-4px;width:50px;height:50px;border-radius:15px;background:var(--goldg) center/cover;border:2px solid #fff;display:grid;place-items:center;color:#2a1d00;font:800 .8rem Sora}
+.about p{max-width:60ch;color:var(--muted);margin:14px auto 0}
+
+/* socials */
+.soc{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.tile{display:flex;align-items:center;gap:12px;padding:16px;font-weight:600;transition:transform .2s,border-color .2s}
+.tile:hover{transform:translateY(-3px);border-color:var(--gold)}
+.ic{width:40px;height:40px;border-radius:13px;flex:none}
+
+/* footer */
+footer{margin-top:80px;padding:48px 0 30px;background:linear-gradient(180deg,transparent,rgba(125,15,38,.55));border-top:1px solid var(--line)}
+.fg{display:grid;gap:30px;grid-template-columns:1fr}
+@media(min-width:760px){.fg{grid-template-columns:1.6fr 1fr 1fr 1.2fr}.soc{grid-template-columns:repeat(3,1fr)}}
+footer h4{margin:0 0 12px;color:var(--gold2);font:600 .8rem Inter;letter-spacing:.14em}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+footer li a{color:var(--muted)}footer li a:hover{color:#fff}
+footer p{color:var(--muted);margin:10px 0 14px;max-width:36ch}
+.mini{display:flex;flex-wrap:wrap;gap:8px}
+.mini a{width:38px;height:38px;border-radius:12px}
+.legal{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;color:var(--muted);font-size:.86rem}
+.legal nav{display:flex;gap:16px}
+
+/* floating */
+.fab{position:fixed;right:16px;z-index:40;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;cursor:pointer;border:1px solid var(--line);color:#fff;font-size:1.3rem}
+#top{bottom:calc(88px + env(safe-area-inset-bottom,0px));background-color:rgba(225,29,52,.5);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);opacity:0;pointer-events:none;transform:scale(.8);transition:.25s}
+#top.show{opacity:1;pointer-events:auto;transform:none;border-color:var(--gold)}
+#wa{bottom:calc(20px + env(safe-area-inset-bottom,0px));background:linear-gradient(150deg,#ffe48a,#F5C542 50%,#b8902a);border-color:rgba(255,255,255,.7);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.9),0 8px 24px rgba(212,175,55,.55);color:#7d0f26}
+#wa .i{width:28px;height:28px}
+
+/* modal */
+.ov{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:rgba(14,2,6,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);opacity:0;visibility:hidden;transition:.25s}
+.ov.open{opacity:1;visibility:visible}
+.modal{width:100%;max-width:440px;padding:26px;background-color:rgba(54,8,20,.78);transform:translateY(24px) scale(.97);transition:.3s cubic-bezier(.3,1.3,.5,1)}
+.ov.open .modal{transform:none}
+.mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.x{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--glass);color:#fff;font-size:1.1rem;cursor:pointer}
+label{display:block;font-weight:600;font-size:.9rem;margin:14px 0 6px}
+textarea,input{width:100%;padding:14px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.09);color:#fff;font:inherit}
+textarea{min-height:120px;resize:vertical}
+::placeholder{color:#c79aa1}
+.modal .btn{width:100%;margin-top:20px}
+.note{color:var(--muted);font-size:.8rem;margin-top:10px;display:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.i{width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.chip{display:grid;place-items:center;color:#fff;background:linear-gradient(150deg,#ff6a78,#d4142c 55%,#8f0a1f);border:1px solid rgba(255,255,255,.55);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.8),inset 0 -6px 10px rgba(80,0,10,.35),0 6px 16px rgba(225,29,52,.4);position:relative;overflow:hidden}
+.chip::after{content:"";position:absolute;left:0;right:0;top:0;height:48%;background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,0))}
+.chip.g{color:#fff;background:linear-gradient(150deg,#ffe48a,#F5C542 45%,#b8902a);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.9),0 6px 16px rgba(212,175,55,.4)}
+.thumb .chip{width:84px;height:84px;border-radius:26px}.thumb .i{width:40px;height:40px;position:relative;z-index:1;filter:drop-shadow(0 2px 3px rgba(80,0,10,.5))}
+.ic .i,.mini .i{position:relative;z-index:1}
+.thumb[style]{background-size:cover;background-position:center;background-repeat:no-repeat}
+</style>
+</head>
+<body id="home">
+
+<header>
+  <div class="bar glass">
+    <a class="brand" href="#home" aria-label="POPKID XMD home"><span class="logo" id="logoIcon">PX</span>POPKID XMD</a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
+  </div>
+  <nav class="drawer glass" id="drawer">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#about">About Us</a>
+    <a data-link="popkid_bot_page_link">Popkid Bot</a>
+    <a href="#social-contact">Contact Us</a>
+    <button class="btn gold" data-open>Get Service Support</button>
+  </nav>
+</header>
+
+<main>
+<div class="hero"><div class="wrap">
+  <div class="badge glass" id="heroBadge">PX</div>
+  <h1>POPKID XMD</h1>
+  <h2>Bot Hosting &amp; More</h2>
+  <p>Bot hosting is what we do best. We also boost social media, sell panel servers, and create websites and apps.</p>
+  <div class="acts">
+    <button class="btn gold" data-open><i data-i="msg"></i>Get In Touch</button>
+    <a class="btn" href="#services">Explore<i data-i="down"></i></a>
+    <a class="btn" data-link="popkid_bot_page_link"><i data-i="bot"></i>Popkid Bot</a>
+  </div>
+</div></div>
+
+<section id="services"><div class="wrap">
+  <span class="eyebrow">BUILT AROUND YOUR NEEDS</span>
+  <h2 class="sec-h">Services &amp; Expertise</h2>
+  <p class="sec-p">Bot hosting comes first. Grow your social presence, buy panel servers, or bring your website and app ideas to life.</p>
+  <div class="grid" id="cards"></div>
+</div></section>
+
+<section id="testimonials"><div class="wrap">
+  <span class="eyebrow">TESTIMONIALS</span>
+  <h2 class="sec-h">What People Say</h2>
+  <p class="sec-p">Real feedback from our users and clients</p>
+  <div class="car">
+    <button class="arr l" aria-label="Previous review" data-dir="-1"><i data-i="left"></i></button>
+    <div class="track" id="track"></div>
+    <button class="arr r" aria-label="Next review" data-dir="1"><i data-i="right"></i></button>
+  </div>
+</div></section>
+
+<section id="about"><div class="wrap">
+  <div class="about glass">
+    <div class="pw"><div class="pf" id="founder">P</div><div class="pb" id="aboutBadge">PX</div></div>
+    <div>
+      <span class="eyebrow">ABOUT POPKID XMD</span>
+      <h2 class="sec-h">The People Behind POPKID XMD</h2>
+      <p>POPKID XMD started with one goal: make bot hosting simple and dependable. Today we host bots, boost social profiles, sell panel servers, and build websites, apps and WhatsApp bots for people who want things done properly.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="social-contact"><div class="wrap">
+  <span class="eyebrow">STAY CONNECTED</span>
+  <h2 class="sec-h">Our Social Media</h2>
+  <p class="sec-p">Follow us and reach out through your favourite platform</p>
+  <div class="soc" id="soc"></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="fg">
+    <div>
+      <div class="brand"><span class="logo" id="logoIcon2">PX</span>POPKID XMD</div>
+      <p>Bot hosting first, plus social boosting, panel servers, websites and apps.</p>
+      <div class="mini" id="mini"></div>
+    </div>
+    <div><h4>LINKS</h4><ul>
+      <li><a href="#home">Homepage</a></li><li><a data-link="popkid_bot_page_link">Popkid Bot</a></li><li><a href="#social-contact">Contact Us</a></li></ul></div>
+    <div><h4>INFO</h4><ul>
+      <li><a data-link="privacy_policy_link">Privacy Policy</a></li><li><a data-link="terms_of_service_link">Terms of Service</a></li>
+      <li><a href="#about">About Us</a></li><li><a href="#social-contact">Contact Us</a></li><li><a data-link="sitemap_link">Sitemap</a></li></ul></div>
+    <div><h4>SERVICES</h4><ul id="fsv"></ul></div>
+  </div>
+  <div class="legal">
+    <span>© 2026 POPKID XMD. Developed by <span id="dev"></span>. All rights reserved.</span>
+    <nav><a data-link="privacy_policy_link">Privacy</a><a data-link="terms_of_service_link">Terms</a><a href="#home">POPKID XMD</a></nav>
+  </div>
+</div></footer>
+
+<button class="fab glass" id="top" aria-label="Back to top"><i data-i="up"></i></button>
+<a class="fab" id="wa" data-wa aria-label="Chat on WhatsApp" target="_blank" rel="noopener">
+  <i data-i="whats"></i>
+</a>
+
+<div class="ov" id="ov" role="dialog" aria-modal="true" aria-labelledby="mt">
+  <div class="modal glass">
+    <div class="mh"><h3 id="mt">Get In Touch</h3><button class="x" id="close" aria-label="Close"><i data-i="x"></i></button></div>
+    <label for="need">What do you need?</label>
+    <textarea id="need" placeholder="Tell us what you’re looking for..." required></textarea>
+    <label for="bud">Your Budget (optional)</label>
+    <input id="bud" type="text" placeholder="e.g. KSH 5,000 or $50">
+    <button class="btn gold" id="send" disabled>Send via WhatsApp</button>
+    <div class="note" id="note">Add your WhatsApp number in the CONFIG block to enable sending.</div>
+  </div>
+</div>
+
+<script>
+/* ===== CONFIG: fill in your images and links ===== */
+const CONFIG = {
+  images: {
+    brand_logo_icon:"https://files.catbox.moe/k9nr30.png", hero_center_logo_image:"https://files.catbox.moe/k9nr30.png",
+    service_bot_hosting_image:"https://files.catbox.moe/i1cs0u.jpg", service_social_boosting_image:"https://files.catbox.moe/25k5cm.jpg", service_panel_servers_image:"https://files.catbox.moe/w5xf3f.jpg",
+    service_website_dev_image:"https://files.catbox.moe/epq9ln.jpg", service_whatsapp_bot_dev_image:"https://files.catbox.moe/xwtieb.jpg", service_popkid_bot_image:"https://files.catbox.moe/tu0j25.jpg",
+    service_other_tech_image:"https://files.catbox.moe/dia614.jpg", service_app_dev_image:"https://files.catbox.moe/nh3jkl.jpg", service_reseller_api_image:"https://files.catbox.moe/qez383.jpg",
+    service_data_bundles_image:"https://files.catbox.moe/25k5cm.jpg", about_founder_avatar_image:"https://files.catbox.moe/epq9ln.jpg", about_brand_badge_image:"https://files.catbox.moe/k9nr30.png"
+  },
+  links: {
+    whatsapp_inquiry_number:"254111385747", popkid_bot_page_link:"https://github.com/popkidultra/POPKID-BOT/fork", bot_hosting_explore_link:"",
+    social_boosting_explore_link:"", panel_servers_explore_link:"", reseller_api_explore_link:"",
+    data_bundles_explore_link:"", youtube_link:"", instagram_link:"", tiktok_link:"",
+    whatsapp_direct_link:"https://wa.me/254111385747", github_link:"https://github.com/popkidultra/POPKID-BOT/fork", telegram_link:"", twitter_x_link:"",
+    contact_portal_link:"https://wa.me/254111385747", email_address:"", facebook_link:"",
+    privacy_policy_link:"", terms_of_service_link:"", sitemap_link:""
+  },
+  developer_credit_name: ""
+};
+const L = CONFIG.links, I = CONFIG.images;
+
+const services = [
+  ["Bot Hosting","server","service_bot_hosting_image","Bot hosting is at the heart of POPKID XMD. Deploy and host your bot with setup assistance and support.","Explore","bot_hosting_explore_link"],
+  ["Social Media Boosting","trend","service_social_boosting_image","Social media boosting: grow your followers, likes, and views with services tailored to your goals.","Explore","social_boosting_explore_link"],
+  ["Panel Servers","panel","service_panel_servers_image","Panel servers for sale, with help choosing the right setup for your bots, apps, and hosting needs.","Explore","panel_servers_explore_link"],
+  ["Website Development","globe","service_website_dev_image","We create any type of website, from business and portfolio sites to online stores and custom web platforms.","Get in touch",null,"Website Development"],
+  ["WhatsApp Bot Dev","msg","service_whatsapp_bot_dev_image","WhatsApp bots built for your needs, with custom commands, automated conversations, and setup support.","Get in touch",null,"WhatsApp Bot Development"],
+  ["Popkid Bot","bot","service_popkid_bot_image","Meet Popkid Bot: our WhatsApp assistant for conversations, media, and everyday tasks.","Explore","popkid_bot_page_link"],
+  ["Other Tech Things","wrench","service_other_tech_image","Have any tech issue or need any tech service? Tell us what you need.","Get in touch",null,"Other tech help"],
+  ["App Development","phone","service_app_dev_image","Custom apps built around your ideas, your business, and the people who will use them.","Get in touch",null,"App Development"],
+  ["Reseller API","link","service_reseller_api_image","POPKID XMD reseller APIs: sell services from our site as your own and set your own profit margin.","Explore","reseller_api_explore_link"],
+  ["Data Bundles","wifi","service_data_bundles_image","Buy data bundles quickly and easily, straight from our platform.","Explore","data_bundles_explore_link"]
+];
+/* Sample reviews: replace with real ones */
+const reviews = [
+  ["Brian K.","2 weeks ago","My bot has stayed online since the day I deployed it. Setup help was quick and clear."],
+  ["Amina W.","1 month ago","Fast boosting and honest pricing. I’ll keep coming back for my pages."],
+  ["Dennis O.","1 month ago","Got a custom WhatsApp bot with the exact commands I asked for. Great support."],
+  ["Faith M.","2 months ago","The data bundles are quick to buy and the reseller API made it easy to start my own shop."]
+];
+const socials = [
+  ["YouTube","yt","youtube_link"],["Instagram","ig","instagram_link"],["TikTok","tt","tiktok_link"],
+  ["WhatsApp","whats","whatsapp_direct_link"],["GitHub","gh","github_link"],["Telegram","tg","telegram_link"],
+  ["X / Twitter","xx","twitter_x_link"],["Contact Us","help","contact_portal_link"],["Email","mail","email_address"],["Facebook","fb","facebook_link"]
+];
+const P={
+server:'<rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/>',
+trend:'<path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/>',
+panel:'<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>',
+globe:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
+msg:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+bot:'<rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/>',
+wrench:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+phone:'<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/>',
+link:'<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
+wifi:'<path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/>',
+yt:'<path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/>',
+ig:'<rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/>',
+tt:'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
+whats:'<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><path d="M9 10c0 3 2 5 5 5l1.5-1.5-2-1-1 .8c-.8-.4-1.600-1.200-2-2l.8-1-1-2z"/>',
+gh:'<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4M9 18c-4.51 2-5-2-7-2"/>',
+tg:'<path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/>',
+xx:'<path d="M4 4l16 16M20 4 4 20"/>',
+help:'<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>',
+mail:'<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+fb:'<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>',
+down:'<path d="M12 5v14M19 12l-7 7-7-7"/>',up:'<path d="M12 19V5M5 12l7-7 7 7"/>',
+arrow:'<path d="M5 12h14M12 5l7 7-7 7"/>',left:'<path d="m15 18-6-6 6-6"/>',right:'<path d="m9 18 6-6-6-6"/>',x:'<path d="M18 6 6 18M6 6l12 12"/>'};
+const ico=n=>`<svg class="i" viewBox="0 0 24 24" aria-hidden="true">${P[n]||""}</svg>`;
+const $ = s => document.querySelector(s);
+const url = k => k === "email_address" ? (L[k] ? "mailto:" + L[k] : "") : (L[k] || "");
+const bg = k => I[k] ? `style="background-image:url('${I[k]}')"` : "";
+
+/* images */
+function setImg(sel,key){const e=$(sel);if(I[key]){e.style.backgroundImage=`url('${I[key]}')`;e.textContent="";}}
+setImg("#logoIcon","brand_logo_icon");setImg("#logoIcon2","brand_logo_icon");
+setImg("#heroBadge","hero_center_logo_image");setImg("#founder","about_founder_avatar_image");setImg("#aboutBadge","about_brand_badge_image");
+$("#dev").textContent = CONFIG.developer_credit_name || "POPKID XMD";
+
+/* cards */
+$("#cards").innerHTML = services.map((s,i)=>`
+<article class="card glass" id="svc${i}">
+  <div class="thumb" ${bg(s[2])} role="img" aria-label="${s[0]}">${I[s[2]]?"":`<span class="chip">${ico(s[1])}</span>`}</div>
+  <div class="in"><h3>${s[0]}</h3><p>${s[3]}</p>
+  ${s[5]?`<a class="go" data-link="${s[5]}" data-topic="${s[0]}">${s[4]}${ico("arrow")}</a>`:`<button class="go" data-open data-topic="${s[6]}">${s[4]}${ico("arrow")}</button>`}
+  </div></article>`).join("");
+
+/* reviews */
+$("#track").innerHTML = reviews.map(r=>`
+<div class="rev glass"><div class="who"><div class="av">${r[0][0]}</div><div><b>${r[0]}</b><small>${r[1]}</small></div></div>
+<div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>“${r[2]}”</p></div>`).join("");
+document.querySelectorAll(".arr").forEach(b=>b.onclick=()=>{
+  const t=$("#track");t.scrollBy({left:+b.dataset.dir*(t.firstElementChild.offsetWidth+16),behavior:"smooth"});});
+
+/* socials */
+$("#soc").innerHTML = socials.map(s=>`<a class="tile glass" data-link="${s[2]}" target="_blank" rel="noopener"><span class="ic chip">${ico(s[1])}</span>${s[0]}</a>`).join("");
+$("#mini").innerHTML = socials.map(s=>`<a data-link="${s[2]}" target="_blank" rel="noopener" aria-label="${s[0]}" title="${s[0]}" class="chip">${ico(s[1])}</a>`).join("");
+const fs=[["Bot Hosting & Deployment",0],["Social Media Boosting",1],["Panel Server Sales",2],["Website Development",3],["App Development",7]];
+$("#fsv").innerHTML = fs.map(f=>{const s=services[f[1]];
+  return `<li>${s[5]&&L[s[5]]?`<a href="${L[s[5]]}">${f[0]}</a>`:`<a href="#svc${f[1]}">${f[0]}</a>`}</li>`}).join("");
+
+document.querySelectorAll('[data-i]').forEach(e=>e.outerHTML=ico(e.dataset.i));
+/* resolve links */
+document.querySelectorAll("[data-link]").forEach(a=>{
+  const u=url(a.dataset.link);
+  if(u){a.href=u;}else if(a.dataset.topic){a.href="#";a.addEventListener("click",e=>{e.preventDefault();openModal(a.dataset.topic);});}else{a.href="#";a.addEventListener("click",e=>e.preventDefault());a.title="Link not set yet";a.style.opacity=.75;}
+});
+const num=(L.whatsapp_inquiry_number||"").replace(/\D/g,"");
+$("#wa").href = num ? `https://wa.me/${num}` : "#";
+if(!num) $("#wa").addEventListener("click",e=>{e.preventDefault();openModal();});
+
+/* drawer */
+const burger=$("#burger"),drawer=$("#drawer");
+function toggle(f){const o=f??!drawer.classList.contains("open");drawer.classList.toggle("open",o);burger.classList.toggle("open",o);burger.setAttribute("aria-expanded",o);}
+burger.onclick=()=>toggle();
+drawer.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>toggle(false)));
+
+/* modal */
+const ov=$("#ov"),need=$("#need"),send=$("#send");
+function openModal(topic){toggle(false);ov.classList.add("open");document.body.classList.add("lock");
+  if(topic&&!need.value) need.value=`I’m interested in: ${topic}.\n`;
+  send.disabled=!need.value.trim();setTimeout(()=>need.focus(),200);}
+function closeModal(){ov.classList.remove("open");document.body.classList.remove("lock");}
+document.querySelectorAll("[data-open]").forEach(b=>b.addEventListener("click",()=>openModal(b.dataset.topic)));
+$("#close").onclick=closeModal;
+ov.addEventListener("click",e=>{if(e.target===ov)closeModal();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeModal();toggle(false);}});
+need.addEventListener("input",()=>send.disabled=!need.value.trim());
+send.onclick=()=>{
+  if(!num){$("#note").style.display="block";return;}
+  const b=$("#bud").value.trim();
+  const msg=`Hello POPKID XMD 👋\n\n*What I need:*\n${need.value.trim()}`+(b?`\n\n*Budget:* ${b}`:"");
+  window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`,"_blank","noopener");
+  closeModal();
+};
+
+/* back to top */
+const toTop=$("#top");
+addEventListener("scroll",()=>toTop.classList.toggle("show",scrollY>500),{passive:true});
+toTop.onclick=()=>scrollTo({top:0,behavior:"smooth"});
+</script>
+</body>
+</html>
